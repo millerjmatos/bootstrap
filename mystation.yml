@@ -1,5 +1,6 @@
 - name: Preparing Workstation
   hosts: localhost
+  become: true
   connection: local
   tasks:
 
@@ -35,8 +36,14 @@
     - mtr
 
   - block:
+    - name: Installing Winbox 4.0beta14
+      unarchive:
+        src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
+        dest: /usr/local/bin
+        remote_src: yes
+
+  - block:
     - name: Installing Vagrant 2.2.19
-      become: true
       unarchive:
         src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
         dest: /usr/local/bin
@@ -44,7 +51,6 @@
 
   - block:
     - name: Installing AWS CLI via pip3
-      become: true
       pip:
         name: awscli
         executable: pip3
