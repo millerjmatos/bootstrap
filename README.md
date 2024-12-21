@@ -5,7 +5,7 @@
 Basta rodar um comando para configurar tudo:
 
 ```bash
-curl -s https://github.com/millerjmatos/bootstrap/blob/main/tools.sh | bash
+curl -s https://raw.githubusercontent.com/millerjmatos/bootstrap/refs/heads/main/tools.sh | bash
 ```
 ___
 Created by [Muller Matos](https://linktr.ee/millerjmatos)
