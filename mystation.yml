@@ -42,3 +42,19 @@
         src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
         dest: /usr/local/bin
         remote_src: yes
+
+  - block:
+    - name: Install AWS CLI v2
+      become: true
+      tasks:
+      - name: Download AWS CLI v2 and Install
+        get_url:
+          url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+          dest: /tmp/awscliv2.zip
+        ansible.builtin.unarchive:
+          src: /tmp/awscliv2.zip
+          dest: /tmp/
+          remote_src: yes
+        command: ./aws/install
+        args:
+          chdir: /tmp
