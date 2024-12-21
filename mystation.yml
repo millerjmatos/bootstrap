@@ -44,16 +44,18 @@
         remote_src: yes
 
   - block:
-    - name: Download AWS CLI v2 and Install
-      become: true
-      tasks:
-        get_url:
-          url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-          dest: /tmp/awscliv2.zip
-        ansible.builtin.unarchive:
-          src: /tmp/awscliv2.zip
-          dest: /tmp/
-          remote_src: yes
-        command: ./aws/install
-        args:
-          chdir: /tmp
+    - name: Download AWS CLI v2
+      get_url:
+        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /tmp/awscliv2.zip
+
+    - name: Unzip AWS CLI installer
+      ansible.builtin.unarchive:
+        src: /tmp/awscliv2.zip
+        dest: /tmp/
+        remote_src: yes
+
+    - name: Install AWS CLI
+      command: ./aws/install
+      args:
+        chdir: /tmp
