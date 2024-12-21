@@ -1,1 +1,44 @@
+---
+- name: Preparing Workstation
+  hosts: localhost
+  connection: local
+  tasks:
 
+  - name: Installing Linux Apps
+    become: true
+    apt:
+      name: '{{ item }}'
+      install_recommends: yes
+      state: present
+    loop:
+    - vim
+    - htop
+    - curl
+    - wget
+    - ncdu
+    - apt-transport-https
+    - ca-certificates
+    - gnupg
+    - python3-pip
+    - make
+    - git
+    - bash-completion
+    - gdebi
+    - gnupg-agent
+    - color-picker
+    - spotify-client
+    - flameshot
+    - fonts-hack
+    - tilix
+    - virtualbox
+    - mlocate
+    - jq
+    - mtr
+
+  - block:
+    - name: Installing Vagrant 2.2.19
+      become: true
+      unarchive:
+        src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
+        dest: /usr/local/bin
+        remote_src: yes
