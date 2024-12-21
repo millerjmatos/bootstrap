@@ -1,4 +1,3 @@
----
 - name: Preparing Workstation
   hosts: localhost
   connection: local
@@ -44,18 +43,8 @@
         remote_src: yes
 
   - block:
-    - name: Download AWS CLI v2
-      get_url:
-        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-        dest: /tmp/awscliv2.zip
-
-    - name: Unzip AWS CLI installer
-      ansible.builtin.unarchive:
-        src: /tmp/awscliv2.zip
-        dest: /tmp/
-        remote_src: yes
-
-    - name: Install AWS CLI
-      command: ./aws/install
-      args:
-        chdir: /tmp
+    - name: Installing AWS CLI via pip3
+      become: true
+      pip:
+        name: awscli
+        executable: pip3
