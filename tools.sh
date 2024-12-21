@@ -14,4 +14,4 @@ sudo apt install ansible -y
 
 # Executa o playbook:
 cd ~/ansible-setup
-ansible-playbook tools.yml --ask-become-pass
+ansible-playbook mystation.yml --ask-become-pass
