@@ -1,6 +1,6 @@
 # bootstrap
 
-> Verifique o conteúdo do arquivo mystation.yml antes, e certifique-se de compreender todas as etapas. Fique a vontade para editá-lo conforme suas necessidades e preferências.
+> Verifique o conteúdo do arquivo mystation.yml antes, e certifique-se de compreender todas as etapas. Fique à vontade para editá-lo conforme suas necessidades e preferências.
 
 Basta rodar um comando para configurar tudo:
 
