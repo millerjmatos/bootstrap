@@ -5,7 +5,6 @@
   tasks:
 
   - name: Installing Linux Apps
-    become: true
     apt:
       name: '{{ item }}'
       install_recommends: yes
@@ -34,6 +33,21 @@
     - mlocate
     - jq
     - mtr
+
+  - name: Installing Google Chrome
+    block:
+    - name: Baixar o pacote .deb do Google Chrome
+      get_url:
+        url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        dest: /tmp/google-chrome-stable_current_amd64.deb
+    - name: Instalar o pacote do Google Chrome
+      apt:
+        deb: /tmp/google-chrome-stable_current_amd64.deb
+        state: present
+    - name: Limpar o arquivo .deb após instalação
+      file:
+        path: /tmp/google-chrome-stable_current_amd64.deb
+        state: absent
 
   - block:
     - name: Installing Winbox 4.0beta14
