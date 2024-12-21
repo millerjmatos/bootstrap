@@ -44,10 +44,9 @@
         remote_src: yes
 
   - block:
-    - name: Install AWS CLI v2
+    - name: Download AWS CLI v2 and Install
       become: true
       tasks:
-      - name: Download AWS CLI v2 and Install
         get_url:
           url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
           dest: /tmp/awscliv2.zip
