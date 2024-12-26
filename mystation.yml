@@ -116,3 +116,36 @@
     pip:
       name: awscli
       executable: pip3
+
+  - name: Adicionar repositório do Visual Studio Code
+    apt_key:
+      url: https://packages.microsoft.com/keys/microsoft.asc
+      state: present
+    become: true
+  - name: Adicionar o repositório do Visual Studio Code
+    apt_repository:
+      repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
+      state: present
+    become: true
+  - name: Instalar o Visual Studio Code
+    apt:
+      name: code
+      state: present
+  - name: Instalar extensões do Visual Studio Code
+    shell: code --install-extension {{ item }}
+    loop:
+    - bbenoist.vagrant
+    - dracula-theme.theme-dracula
+    - dracula-theme.theme-dracula-night
+    - equinusocio.vsc-material-theme-icons
+    - foxundermoon.shell-format
+    - GitHub.copilot
+    - GitHub.copilot-actions
+    - hashicorp.terraform
+    - ms-azuredocs.better-yaml-formatter
+    - ms-azuretools.vscode-docker
+    - ms-python.autopep8
+    - ms-python.python
+    - njpwerner.autodocstring
+    - streetsidesoftware.code-spell-checker
+    - streetsidesoftware.code-spell-checker-portuguese
