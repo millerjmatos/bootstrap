@@ -117,21 +117,21 @@
       name: awscli
       executable: pip3
 
-  - name: Adicionar repositório do Visual Studio Code
+  - name: Add vscode repository key
     apt_key:
       url: https://packages.microsoft.com/keys/microsoft.asc
       state: present
     become: true
-  - name: Adicionar o repositório do Visual Studio Code
+  - name: Add vscodee repository
     apt_repository:
       repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
       state: present
     become: true
-  - name: Instalar o Visual Studio Code
+  - name: Install vscodee
     apt:
       name: code
       state: present
-  - name: Instalar extensões do Visual Studio Code
+  - name: Install vscodee extensions
     shell: code --install-extension {{ item }}
     loop:
     - bbenoist.vagrant
