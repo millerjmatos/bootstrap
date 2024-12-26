@@ -4,67 +4,115 @@
   connection: local
   tasks:
 
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+
   - name: Installing Linux Apps
     apt:
       name: '{{ item }}'
       install_recommends: yes
       state: present
     loop:
-    - vim
-    - htop
-    - curl
-    - wget
-    - ncdu
     - apt-transport-https
-    - ca-certificates
-    - gnupg
-    - python3-pip
-    - make
-    - git
     - bash-completion
-    - gdebi
-    - gnupg-agent
-    - color-picker
-    - spotify-client
+    - ca-certificates
+    - curl
     - flameshot
     - fonts-hack
-    - tilix
-    - virtualbox
-    - mlocate
+    - gdebi
+    - git
+    - gnupg
+    - gnupg-agent
+    - htop
     - jq
+    - make
+    - mlocate
     - mtr
+    - ncdu
+    - network-manager-l2tp
+    - network-manager-l2tp-gnome
+    - neofetch
+    - python3-pip
+    - tilix
+    - vim
+    - virtualbox
+    - wget
+
+  - name: Set alias preferences
+    lineinfile:
+      path: /etc/bash.bashrc
+      line: "{{ item }}"
+      state: present
+    loop:
+    - 'alias inet="ip -br -c a"'
+    - 'alias dt="date +%H:%M"'
+    - 'alias k=kubectl'
+
+  - name: Configure vim settings
+    blockinfile:
+      path: /etc/vim/vimrc
+      block: |
+        set expandtab
+        set tabstop=2
+        set shiftwidth=2
+
+  - name: Configurar Neofetch para ser executado ao iniciar o terminal
+    lineinfile:
+      path: ~/.bashrc
+      line: 'neofetch'
+      state: present
+
+  - name: Personalizar configurações do Neofetch
+    blockinfile:
+      path: ~/.config/neofetch/config.conf
+      create: yes
+      block: |
+        print_info() {
+            info title
+            info underline
+            info "OS"
+            info "Host"
+            info "Kernel"
+            info "Uptime"
+            info "Packages"
+            info "Shell"
+            info "Resolution"
+            info "DE"
+            info "WM"
+            info "Terminal"
+            info "CPU"
+            info "Memory"
+        }
 
   - name: Installing Google Chrome
     block:
-    - name: Baixar o pacote .deb do Google Chrome
+    - name: Download Google Chrome .deb package
       get_url:
         url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         dest: /tmp/google-chrome-stable_current_amd64.deb
-    - name: Instalar o pacote do Google Chrome
+    - name: Install Google Chrome package
       apt:
         deb: /tmp/google-chrome-stable_current_amd64.deb
         state: present
-    - name: Limpar o arquivo .deb após instalação
+    - name: Remove Google Chrome .deb package
       file:
         path: /tmp/google-chrome-stable_current_amd64.deb
         state: absent
 
-  - block:
-    - name: Installing Winbox 4.0beta14
-      unarchive:
-        src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
-        dest: /usr/local/bin
-        remote_src: yes
+  - name: Installing Winbox 4.0beta14
+    unarchive:
+      src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
+      dest: /usr/local/bin
+      remote_src: yes
 
-  - block:
-    - name: Installing Vagrant 2.2.19
-      unarchive:
-        src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
-        dest: /usr/local/bin
-        remote_src: yes
+  - name: Installing Vagrant 2.2.19
+    unarchive:
+      src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
+      dest: /usr/local/bin
+      remote_src: yes
 
-  - block:
-    - name: Installing AWS CLI via pip3
-      pip:
-        name: awscli
-        executable: pip3
+  - name: Installing AWS CLI via pip3
+    pip:
+      name: awscli
+      executable: pip3
