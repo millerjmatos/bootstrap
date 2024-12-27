@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Muller Matos
+# Created by: Muller Matos
 # Website: www.mullertec.com.br
 # Creation: dec-2024
 # Tested for Linux Mint 21.2 (Jammy)
