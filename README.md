@@ -1,5 +1,7 @@
 # bootstrap
 
+*Automating system configuration with one command using Ansible.*
+
 > Review the contents of the `mystation.yml` file first, and make sure you understand all the steps. Feel free to edit it according to your needs and preferences.
 
 Just run one command to set everything up:
