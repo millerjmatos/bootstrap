@@ -1,6 +1,6 @@
 # bootstrap
 
-*Automating system configuration using Ansible.*
+*Automating system configuration using Ansible..*
 
 > Review the contents of the `mystation.yml` file first, and make sure you understand all the steps. Feel free to edit it according to your needs and preferences.
 
