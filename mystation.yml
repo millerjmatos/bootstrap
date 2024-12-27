@@ -1,4 +1,4 @@
-- name: Preparing Workstation
+- name: Preparing workstation
   hosts: localhost
   become: true
   connection: local
@@ -8,7 +8,7 @@
     apt:
       update_cache: yes
 
-  - name: Installing Linux Apps
+  - name: Install Linux apps
     apt:
       name: '{{ item }}'
       install_recommends: yes
@@ -57,13 +57,13 @@
         set tabstop=2
         set shiftwidth=2
 
-  - name: Configurar Neofetch para ser executado ao iniciar o terminal
+  - name: Configure neofetch to run at terminal startup
     lineinfile:
       path: ~/.bashrc
       line: 'neofetch'
       state: present
 
-  - name: Personalizar configurações do Neofetch
+  - name: Customize neofetch settings
     blockinfile:
       path: ~/.config/neofetch/config.conf
       create: yes
@@ -85,7 +85,7 @@
             info "Memory"
         }
 
-  - name: Installing Google Chrome
+  - name: Install Google Chrome
     block:
     - name: Download Google Chrome .deb package
       get_url:
@@ -100,19 +100,19 @@
         path: /tmp/google-chrome-stable_current_amd64.deb
         state: absent
 
-  - name: Installing Winbox 4.0beta14
+  - name: Install Winbox 4.0beta14
     unarchive:
       src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
       dest: /usr/local/bin
       remote_src: yes
 
-  - name: Installing Vagrant 2.2.19
+  - name: Install Vagrant 2.2.19
     unarchive:
       src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
       dest: /usr/local/bin
       remote_src: yes
 
-  - name: Installing AWS CLI via pip3
+  - name: Install AWS CLI via pip3
     pip:
       name: awscli
       executable: pip3

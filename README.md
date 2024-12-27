@@ -1,8 +1,8 @@
 # bootstrap
 
-> Verifique o conteúdo do arquivo mystation.yml antes, e certifique-se de compreender todas as etapas. Fique à vontade para editá-lo conforme suas necessidades e preferências.
+> Review the contents of the `mystation.yml` file first, and make sure you understand all the steps. Feel free to edit it according to your needs and preferences.
 
-Basta rodar um comando para configurar tudo:
+Just run one command to set everything up:
 
 ```bash
 curl -s https://raw.githubusercontent.com/millerjmatos/bootstrap/refs/heads/main/tools.sh | bash
