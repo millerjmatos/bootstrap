@@ -121,28 +121,25 @@
     apt_key:
       url: https://packages.microsoft.com/keys/microsoft.asc
       state: present
-    become: true
-  - name: Add vscodee repository
+  - name: Add vscode repository
     apt_repository:
       repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
       state: present
-    become: true
-  - name: Install vscodee
+  - name: Install vscode
     apt:
       name: code
       state: present
-  - name: Install vscodee extensions
-    shell: code --install-extension {{ item }}
+  - name: Install vscode extensions
+    become: false
+    shell: code --install-extension {{ item }} --no-sandbox --user-data-dir=/home/$USER/.vscode
     loop:
     - bbenoist.vagrant
     - dracula-theme.theme-dracula
-    - dracula-theme.theme-dracula-night
+    - bceskavich.theme-dracula-at-night
     - equinusocio.vsc-material-theme-icons
     - foxundermoon.shell-format
-    - GitHub.copilot
-    - GitHub.copilot-actions
     - hashicorp.terraform
-    - ms-azuredocs.better-yaml-formatter
+    - kennylong.kubernetes-yaml-formatter
     - ms-azuretools.vscode-docker
     - ms-python.autopep8
     - ms-python.python
