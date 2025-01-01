@@ -17,6 +17,7 @@
     - apt-transport-https
     - bash-completion
     - ca-certificates
+    - color-picker
     - curl
     - filezilla
     - flameshot
@@ -37,6 +38,7 @@
     - openssh-client
     - openssh-server
     - python3-pip
+    - spotify-client
     - steam
     - tilix
     - vim
