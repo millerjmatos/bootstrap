@@ -18,6 +18,7 @@
     - bash-completion
     - ca-certificates
     - curl
+    - filezilla
     - flameshot
     - fonts-hack
     - gdebi
@@ -33,11 +34,17 @@
     - network-manager-l2tp
     - network-manager-l2tp-gnome
     - neofetch
+    - openssh-client
+    - openssh-server
     - python3-pip
+    - steam
     - tilix
     - vim
     - virtualbox
+    - vlc
     - wget
+    - xl2tpd
+    - xrdp
 
   - name: Set alias preferences
     lineinfile:
