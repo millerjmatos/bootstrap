@@ -155,3 +155,15 @@
     - njpwerner.autodocstring
     - streetsidesoftware.code-spell-checker
     - streetsidesoftware.code-spell-checker-portuguese
+
+  - name: Add Ulauncher repository
+    apt_repository:
+      repo: 'ppa:agornostal/ulauncher'
+      state: present
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+  - name: Install Ulauncher
+    apt:
+      name: ulauncher
+      state: present
