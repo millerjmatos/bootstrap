@@ -95,6 +95,12 @@
             info "Memory"
         }
 
+  - name: Install balenaEtcher
+    get_url:
+      url: 'https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25-x64.AppImage'
+      dest: /usr/local/bin/balena
+      mode: '0755'
+
   - name: Install Google Chrome
     block:
     - name: Download Google Chrome .deb package
@@ -118,7 +124,7 @@
 
   - name: Install Vagrant 2.2.19
     unarchive:
-      src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
+      src: 'https://releases.hashicorp.com/vagrant/2.4.3/vagrant_2.4.3_linux_amd64.zip'
       dest: /usr/local/bin
       remote_src: yes
 
@@ -169,5 +175,17 @@
       name: ulauncher
       state: present
 
-  - name: Install Bitwarden
-    command: flatpak install -y flathub com.bitwarden.desktop
+  - name: Add Flathub repository
+    shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    args:
+      creates: /var/lib/flatpak/repo/flathub.flatpakrepo
+  - name: Install applications via flatpak
+    shell: flatpak install -y flathub {{ item }}
+    args:
+      creates: /var/lib/flatpak/app/{{ item }}
+    loop:
+    - com.bitwarden.desktop
+    - com.discordapp.Discord
+    - com.obsproject.Studio
+    - org.qbittorrent.qBittorrent
+    - org.telegram.desktop
