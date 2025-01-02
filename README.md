@@ -7,7 +7,7 @@
 Just run one command to set everything up:
 
 ```bash
-curl -s https://raw.githubusercontent.com/millerjmatos/bootstrap/refs/heads/main/tools.sh | bash
+sudo curl -s https://raw.githubusercontent.com/millerjmatos/bootstrap/refs/heads/main/tools.sh | bash
 ```
 ___
 Created by [Muller Matos](https://linktr.ee/millerjmatos)
