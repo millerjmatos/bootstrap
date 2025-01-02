@@ -36,6 +36,7 @@
     - network-manager-l2tp
     - network-manager-l2tp-gnome
     - neofetch
+    - nmap
     - openssh-client
     - openssh-server
     - python3-pip
@@ -186,6 +187,7 @@
     loop:
     - com.bitwarden.desktop
     - com.discordapp.Discord
+    - com.github.unrud.VideoDownloader
     - com.obsproject.Studio
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
