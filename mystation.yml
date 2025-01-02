@@ -21,6 +21,7 @@
     - curl
     - filezilla
     - flameshot
+    - flatpak
     - fonts-hack
     - gdebi
     - git
@@ -167,3 +168,6 @@
     apt:
       name: ulauncher
       state: present
+
+  - name: Install Bitwarden
+    command: flatpak install -y flathub com.bitwarden.desktop
