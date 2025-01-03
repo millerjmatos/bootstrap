@@ -233,3 +233,15 @@
       msg:
       - "Instalação e configuração concluídas com sucesso! =D"
       - "Execute 'newgrp docker' para aplicar as mudanças de grupo"
+
+  - name: Install Kind
+    get_url:
+      url: https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+      dest: /usr/local/bin/kind
+      mode: '0755'
+
+  - name: Download kubectl
+    get_url:
+      url: "https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}/bin/linux/amd64/kubectl"
+      dest: /usr/local/bin/kubectl
+      mode: '0755'
