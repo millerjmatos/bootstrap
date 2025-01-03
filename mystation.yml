@@ -205,3 +205,31 @@
     - com.obsproject.Studio
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
+
+  - name: Download Docker installation script
+    get_url:
+      url: https://get.docker.com
+      dest: /tmp/get-docker.sh
+      mode: '0755'
+  - name: Install Docker
+    shell: sh /tmp/get-docker.sh
+    args:
+      creates: /usr/bin/docker
+  - name: Start and enable Docker services
+    systemd:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    loop:
+    - docker.socket
+    - docker.service
+  - name: Add user to docker group
+    user:
+      name: "{{ lookup('env', 'USER') }}"
+      groups: docker
+      append: yes
+  - name: Display message
+    debug:
+      msg:
+      - "Instalação e configuração concluídas com sucesso! =D"
+      - "Execute 'newgrp docker' para aplicar as mudanças de grupo"
