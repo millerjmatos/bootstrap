@@ -236,6 +236,12 @@
       - "Instalação e configuração concluídas com sucesso! =D"
       - "Execute 'newgrp docker' para aplicar as mudanças de grupo"
 
+  - name: Download Docker Compose
+    get_url:
+      url: "https://github.com/docker/compose/releases/latest/download/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+      dest: /usr/local/bin/docker-compose
+      mode: '0755'
+
   - name: Install Kind
     get_url:
       url: https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
