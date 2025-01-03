@@ -40,7 +40,6 @@
     - openssh-client
     - openssh-server
     - python3-pip
-    - spotify-client
     - steam
     - tilix
     - vim
@@ -205,6 +204,7 @@
     - com.discordapp.Discord
     - com.github.unrud.VideoDownloader
     - com.obsproject.Studio
+    - com.spotify.Client
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
 
