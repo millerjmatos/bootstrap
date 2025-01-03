@@ -59,6 +59,8 @@
     - 'alias inet="ip -br -c a"'
     - 'alias dt="date +%H:%M"'
     - 'alias k=kubectl'
+    - 'source <(kubectl completion bash)'
+    - 'complete -o default -F __start_kubectl k'
 
   - name: Configure vim settings
     blockinfile:
@@ -240,7 +242,7 @@
       dest: /usr/local/bin/kind
       mode: '0755'
 
-  - name: Download kubectl
+  - name: Install kubectl
     get_url:
       url: "https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}/bin/linux/amd64/kubectl"
       dest: /usr/local/bin/kubectl
