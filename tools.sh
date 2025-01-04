@@ -2,7 +2,7 @@
 # Created by: Muller Matos
 # Website: www.mullertec.com.br
 # Creation: jan-2025
-# Tested for Linux Mint 21.2 (Jammy)
+# Tested for Linux Mint 21.3 (Jammy)
 
 # Update and upgrade the system packages
 sudo apt update && sudo apt upgrade -y
