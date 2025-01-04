@@ -266,7 +266,7 @@
       - "Instalação e configuração concluídas com sucesso! =D"
       - "Execute 'newgrp docker' para aplicar as mudanças de grupo"
 
-  - name: Download Docker Compose
+  - name: Install Docker Compose
     get_url:
       url: "https://github.com/docker/compose/releases/latest/download/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
       dest: /usr/local/bin/docker-compose
