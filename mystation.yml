@@ -133,6 +133,11 @@
     become_user: "{{ lookup('env', 'USER') }}"
     args:
       creates: "{{ lookup('env', 'HOME') }}/.local/share/applications/start-tor-browser.desktop"
+  - name: Create symbolic link for Tor Browser
+    file:
+      src: "/opt/tor-browser/Browser/start-tor-browser"
+      dest: "/usr/local/bin/tor"
+      state: link
 
   - name: Install Google Chrome
     block:
