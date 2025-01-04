@@ -159,6 +159,11 @@
       src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
       dest: /usr/local/bin
       remote_src: yes
+  - name: Create symbolic link for Winbox 4.0beta14
+    file:
+      src: /usr/local/bin/WinBox
+      dest: /usr/local/bin/winbox
+      state: link
 
   - name: Install Vagrant 2.2.19
     unarchive:
