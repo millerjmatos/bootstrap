@@ -139,27 +139,22 @@
       dest: "/usr/local/bin/tor"
       state: link
 
+  - name: Download and install Google Chrome GPG key
+    shell: curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
+    args:
+      creates: /etc/apt/keyrings/google-chrome.gpg
+  - name: Add Google Chrome repository
+    apt_repository:
+      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main"
+      state: present
+      filename: google-chrome
+  - name: Update apt cache
+    apt:
+      update_cache: yes
   - name: Install Google Chrome
-    block:
-    - name: Download Google Chrome .deb package
-      get_url:
-        url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        dest: /tmp/google-chrome-stable_current_amd64.deb
-    - name: Install Google Chrome package
-      apt:
-        deb: /tmp/google-chrome-stable_current_amd64.deb
-        state: present
-    - name: Remove Google Chrome .deb package
-      file:
-        path: /tmp/google-chrome-stable_current_amd64.deb
-        state: absent
-    - name: Add Google Chrome repository
-      copy:
-        content: "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
-        dest: /etc/apt/sources.list.d/google-chrome.list
-        owner: root
-        group: root
-        mode: '0644'
+    apt:
+      name: google-chrome-stable
+      state: present
 
   - name: Install Winbox 4.0beta14
     unarchive:
