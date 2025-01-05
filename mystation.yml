@@ -153,6 +153,13 @@
       file:
         path: /tmp/google-chrome-stable_current_amd64.deb
         state: absent
+    - name: Add Google Chrome repository
+      copy:
+        content: "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
+        dest: /etc/apt/sources.list.d/google-chrome.list
+        owner: root
+        group: root
+        mode: '0644'
 
   - name: Install Winbox 4.0beta14
     unarchive:
