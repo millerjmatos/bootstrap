@@ -140,7 +140,9 @@
       state: link
 
   - name: Download and install Google Chrome GPG key
-    shell: curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
+    apt_key:
+      url: https://dl.google.com/linux/linux_signing_key.pub
+      state: present
     args:
       creates: /etc/apt/keyrings/google-chrome.gpg
   - name: Add Google Chrome repository
