@@ -143,8 +143,6 @@
     apt_key:
       url: https://dl.google.com/linux/linux_signing_key.pub
       state: present
-    args:
-      creates: /etc/apt/keyrings/google-chrome.gpg
   - name: Add Google Chrome repository
     apt_repository:
       repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main"
