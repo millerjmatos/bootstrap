@@ -49,6 +49,12 @@
     - xl2tpd
     - xrdp
 
+  - name: Create user
+    user:
+      name: convidado
+      shell: /bin/bash
+      create_home: yes
+
   - name: Set alias preferences
     lineinfile:
       path: /etc/bash.bashrc
