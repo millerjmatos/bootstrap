@@ -179,13 +179,12 @@
       executable: pip3
 
   - name: Download and install vscode GPG key
-    apt_key:
-      url: https://packages.microsoft.com/keys/microsoft.asc
-      state: present
+    shell: curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/keyrings/microsoft.gpg
+    args:
+      creates: /etc/apt/keyrings/microsoft.gpg
   - name: Add vscode repository
     apt_repository:
-      repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
-      state: present
+      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main"
   - name: Update apt cache
     apt:
       update_cache: yes
