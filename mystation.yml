@@ -178,7 +178,7 @@
       name: awscli
       executable: pip3
 
-  - name: Add vscode repository key
+  - name: Download and install vscode GPG key
     apt_key:
       url: https://packages.microsoft.com/keys/microsoft.asc
       state: present
@@ -186,6 +186,9 @@
     apt_repository:
       repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
       state: present
+  - name: Update apt cache
+    apt:
+      update_cache: yes
   - name: Install vscode
     apt:
       name: code
