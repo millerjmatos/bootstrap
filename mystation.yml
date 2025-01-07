@@ -144,7 +144,7 @@
       src: "/opt/tor-browser/Browser/start-tor-browser"
       dest: "/usr/local/bin/tor"
       state: link
-      
+
   - name: Install Winbox 4.0beta14
     unarchive:
       src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
@@ -155,13 +155,13 @@
       src: /usr/local/bin/WinBox
       dest: /usr/local/bin/winbox
       state: link
-      
+
   - name: Install Vagrant 2.2.19
     unarchive:
       src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
       dest: /usr/local/bin
       remote_src: yes
-      
+
   - name: Install AWS CLI via pip3
     pip:
       name: awscli
@@ -257,6 +257,7 @@
     - com.github.unrud.VideoDownloader
     - com.obsproject.Studio
     - com.spotify.Client
+    - org.kde.optiimage
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
 
