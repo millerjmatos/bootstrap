@@ -1,7 +1,7 @@
 #!/bin/bash
 # Created by: Muller Matos
 # Website: www.mullertec.com.br
-# Creation: jan-2025
+# Creation: dez-2024
 # Tested for Linux Mint 21.3 (Jammy)
 
 # Update and upgrade the system packages
