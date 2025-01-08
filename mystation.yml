@@ -215,10 +215,10 @@
     - ms-python.autopep8
     - ms-python.python
     - njpwerner.autodocstring
+    - PKief.material-icon-theme
     - Postman.postman-for-vscode
     - streetsidesoftware.code-spell-checker
     - streetsidesoftware.code-spell-checker-portuguese
-    - zhuangtongfa.Material-theme
 
   - name: Import Ulauncher GPG key
     command: gpg --keyserver keyserver.ubuntu.com --recv-keys 0xFAF1020699503176
