@@ -29,6 +29,7 @@
     - gnupg-agent
     - htop
     - jq
+    - libarchive-tools
     - make
     - mlocate
     - mtr
