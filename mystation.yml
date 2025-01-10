@@ -149,6 +149,28 @@
       dest: "/usr/local/bin/tor"
       state: link
 
+  - name: Create temporary VeraCrypt directory for download
+    file:
+      path: /tmp/veracrypt
+      state: directory
+      mode: '0755'
+  - name: Download VeraCrypt .deb package
+    get_url:
+      url: "https://launchpad.net/veracrypt/trunk/1.26.14/+download/veracrypt-1.26.14-Ubuntu-22.04-amd64.deb"
+      dest: "/tmp/veracrypt/veracrypt.deb"
+      mode: '0644'
+  - name: Install VeraCrypt dependencies
+    apt:
+      name:
+      - dmsetup
+      - libfuse2
+      state: present
+      update_cache: yes
+  - name: Install VeraCrypt from .deb file
+    apt:
+      deb: "/tmp/veracrypt/veracrypt.deb"
+      state: present
+
   - name: Install Winbox 4.0beta14
     unarchive:
       src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
