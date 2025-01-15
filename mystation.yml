@@ -181,12 +181,6 @@
       dest: /usr/local/bin/winbox
       state: link
 
-  - name: Install Vagrant 2.2.19
-    unarchive:
-      src: 'https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_linux_amd64.zip'
-      dest: /usr/local/bin
-      remote_src: yes
-
   - name: Install AWS CLI via pip3
     pip:
       name: awscli
@@ -230,6 +224,23 @@
     file:
       path: "/tmp/Oracle_VirtualBox_Extension_Pack-7.1.4.vbox-extpack"
       state: absent
+
+  - name: Download and install Vagrant GPG key
+    shell: "curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /etc/apt/keyrings/hashcorp.gpg"
+    args:
+      creates: /etc/apt/keyrings/hashcorp.gpg
+  - name: Add vagrant repository
+    apt_repository:
+      repo: "deb [signed-by=/etc/apt/keyrings/hashcorp.gpg] https://apt.releases.hashicorp.com jammy main\n"
+      state: present
+      filename: vagrant
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+  - name: Install vagrant
+    apt:
+      name: vagrant
+      state: present
 
   - name: Download and install Google Chrome GPG key
     shell: curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
