@@ -312,23 +312,15 @@
       name: anydesk
       state: present
 
-  - name: Import Ulauncher GPG key
-    command: gpg --keyserver keyserver.ubuntu.com --recv-keys 0xFAF1020699503176
+  - name: Download and install Ulauncher GPG key
+    shell: curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xFAF1020699503176" | gpg --dearmor -o /etc/apt/keyrings/ulauncher.gpg
     args:
-      creates: /root/.gnupg/pubring.kbx
-  - name: Export Ulauncher GPG key to keyring
-    command: gpg --export 0xFAF1020699503176
-    register: gpg_key
-  - name: Save Ulauncher GPG key to keyring
-    copy:
-      content: "{{ gpg_key.stdout }}"
-      dest: /usr/share/keyrings/ulauncher-archive-keyring.gpg
+      creates: /etc/apt/keyrings/ulauncher.gpg
   - name: Add Ulauncher repository
-    copy:
-      content: "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main\n"
-      dest: /etc/apt/sources.list.d/ulauncher-jammy.list
-  - name: Update apt cache
-    apt:
+    apt_repository:
+      repo: "deb [signed-by=/etc/apt/keyrings/ulauncher.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main"
+      state: present
+      filename: ulauncher
       update_cache: yes
   - name: Install Ulauncher
     apt:
