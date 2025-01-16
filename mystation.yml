@@ -166,19 +166,21 @@
       path: "/tmp/Oracle_VirtualBox_Extension_Pack-7.1.4.vbox-extpack"
       state: absent
 
-  - name: Download and install Vagrant GPG key
-    shell: "curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /etc/apt/keyrings/hashcorp.gpg"
+  - name: Download and install HashiCorp GPG key
+    shell: "curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /etc/apt/keyrings/hashicorp.gpg"
     args:
-      creates: /etc/apt/keyrings/hashcorp.gpg
-  - name: Add vagrant repository
+      creates: /etc/apt/keyrings/hashicorp.gpg
+  - name: Add hashicorp repository
     apt_repository:
-      repo: "deb [signed-by=/etc/apt/keyrings/hashcorp.gpg] https://apt.releases.hashicorp.com jammy main\n"
+      repo: "deb [signed-by=/etc/apt/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com jammy main\n"
       state: present
-      filename: vagrant
+      filename: hashicorp
       update_cache: yes
-  - name: Install vagrant
+  - name: Install Vagrant and Packer
     apt:
-      name: vagrant
+      name:
+      - vagrant
+      - packer
       state: present
 
   - name: Download and install Google Chrome GPG key
