@@ -344,8 +344,8 @@
   - name: Display message
     debug:
       msg:
-      - "Instalação e configuração concluídas com sucesso! =D"
-      - "Execute 'newgrp docker' para aplicar as mudanças de grupo!"
+      - "Installation and configuration completed successfully! =D"
+      - "Run 'newgrp docker' to apply the group changes."
 
   - name: Install Docker Compose
     get_url:
