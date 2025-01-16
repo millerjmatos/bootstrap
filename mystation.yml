@@ -33,7 +33,7 @@
         set expandtab
         set tabstop=2
         set shiftwidth=2
-      marker: ""
+      marker: "# {mark} default block"
 
   - name: Configure neofetch to run at terminal startup
     lineinfile:
@@ -118,12 +118,12 @@
       dest: /usr/local/bin/balena
       mode: '0755'
 
-  - name: Install Winbox 4.0beta14
+  - name: Install Winbox 4.0beta16
     unarchive:
-      src: 'https://download.mikrotik.com/routeros/winbox/4.0beta14/WinBox_Linux.zip'
+      src: 'https://download.mikrotik.com/routeros/winbox/4.0beta16/WinBox_Linux.zip'
       dest: /usr/local/bin
       remote_src: yes
-  - name: Create symbolic link for Winbox 4.0beta14
+  - name: Create symbolic link for Winbox 4.0beta16
     file:
       src: /usr/local/bin/WinBox
       dest: /usr/local/bin/winbox
