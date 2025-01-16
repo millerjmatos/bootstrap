@@ -33,7 +33,7 @@
         set expandtab
         set tabstop=2
         set shiftwidth=2
-      marker: "# {mark} default block"
+      marker: ""
 
   - name: Configure neofetch to run at terminal startup
     lineinfile:
