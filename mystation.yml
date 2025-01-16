@@ -8,50 +8,6 @@
     apt:
       update_cache: yes
 
-  - name: Install Linux apps
-    apt:
-      name: '{{ item }}'
-      install_recommends: yes
-      state: present
-    loop:
-    - apt-transport-https
-    - bash-completion
-    - ca-certificates
-    - color-picker
-    - curl
-    - filezilla
-    - flameshot
-    - flatpak
-    - fonts-hack
-    - gdebi
-    - git
-    - gnupg
-    - gnupg-agent
-    - htop
-    - jq
-    - libarchive-tools
-    - make
-    - mlocate
-    - mtr
-    - ncdu
-    - net-tools
-    - network-manager-l2tp
-    - network-manager-l2tp-gnome
-    - neofetch
-    - nmap
-    - openssh-client
-    - openssh-server
-    - python3-pip
-    - rclone
-    - rsync
-    - steam
-    - tilix
-    - vim
-    - vlc
-    - wget
-    - xl2tpd
-    - xrdp
-
   - name: Create user
     user:
       name: convidado
@@ -107,68 +63,60 @@
             info "Memory"
         }
 
+  - name: Install Linux apps
+    apt:
+      name: '{{ item }}'
+      install_recommends: yes
+      state: present
+    loop:
+    - apt-transport-https
+    - bash-completion
+    - ca-certificates
+    - color-picker
+    - curl
+    - filezilla
+    - flameshot
+    - flatpak
+    - fonts-hack
+    - gdebi
+    - git
+    - gnupg
+    - gnupg-agent
+    - htop
+    - jq
+    - libarchive-tools
+    - make
+    - mlocate
+    - mtr
+    - ncdu
+    - net-tools
+    - network-manager-l2tp
+    - network-manager-l2tp-gnome
+    - neofetch
+    - nmap
+    - openssh-client
+    - openssh-server
+    - python3-pip
+    - rclone
+    - rsync
+    - steam
+    - tilix
+    - vim
+    - vlc
+    - wget
+    - xl2tpd
+    - xrdp
+
+  - name: Install AWS CLI via pip3
+    pip:
+      name: awscli
+      executable: pip3
+
   - name: Install balenaEtcher
     get_url:
       url: 'https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25-x64.AppImage'
       dest: /usr/local/bin/balena
       mode: '0755'
-
-  - name: Download Tor Browser
-    get_url:
-      url: https://dist.torproject.org/torbrowser/14.0.4/tor-browser-linux-x86_64-14.0.4.tar.xz
-      dest: "/opt/tor-browser.tar.xz"
-      mode: '0644'
-      validate_certs: no
-  - name: Extract Tor Browser
-    unarchive:
-      src: "/opt/tor-browser.tar.xz"
-      dest: "/opt"
-      remote_src: yes
-      mode: '0644'
-  - name: Change ownership and permissions of Tor Browser directory
-    file:
-      path: "/opt/tor-browser"
-      owner: "{{ lookup('env', 'USER') }}"
-      group: "{{ lookup('env', 'USER') }}"
-      mode: '0755'
-      recurse: yes
-  - name: Make the startup script executable
-    file:
-      path: "/opt/tor-browser/start-tor-browser.desktop"
-      mode: '0755'
-  - name: Register Tor Browser as an application
-    shell: "cd /opt/tor-browser && ./start-tor-browser.desktop --register-app"
-    become: false
-    become_user: "{{ lookup('env', 'USER') }}"
-    args:
-      creates: "{{ lookup('env', 'HOME') }}/.local/share/applications/start-tor-browser.desktop"
-  - name: Create symbolic link for Tor Browser
-    file:
-      src: "/opt/tor-browser/Browser/start-tor-browser"
-      dest: "/usr/local/bin/tor"
-      state: link
-
-  - name: Create temporary VeraCrypt directory for download
-    file:
-      path: /tmp/veracrypt
-      state: directory
-      mode: '0755'
-  - name: Download VeraCrypt .deb package
-    get_url:
-      url: "https://launchpad.net/veracrypt/trunk/1.26.14/+download/veracrypt-1.26.14-Ubuntu-22.04-amd64.deb"
-      dest: "/tmp/veracrypt/veracrypt.deb"
-      mode: '0644'
-  - name: Install VeraCrypt dependencies
-    apt:
-      name:
-      - dmsetup
-      - libfuse2
-      state: present
-      update_cache: yes
-  - name: Install VeraCrypt from .deb file
-    apt:
-      deb: "/tmp/veracrypt/veracrypt.deb"
-      state: present
 
   - name: Install Winbox 4.0beta14
     unarchive:
@@ -180,11 +128,6 @@
       src: /usr/local/bin/WinBox
       dest: /usr/local/bin/winbox
       state: link
-
-  - name: Install AWS CLI via pip3
-    pip:
-      name: awscli
-      executable: pip3
 
   - name: Download and install VirtualBox GPG key
     shell: "curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor -o /etc/apt/keyrings/virtualbox.gpg"
@@ -317,23 +260,62 @@
       name: ulauncher
       state: present
 
-  - name: Add Flathub repository
-    shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  - name: Download Tor Browser
+    get_url:
+      url: https://dist.torproject.org/torbrowser/14.0.4/tor-browser-linux-x86_64-14.0.4.tar.xz
+      dest: "/opt/tor-browser.tar.xz"
+      mode: '0644'
+      validate_certs: no
+  - name: Extract Tor Browser
+    unarchive:
+      src: "/opt/tor-browser.tar.xz"
+      dest: "/opt"
+      remote_src: yes
+      mode: '0644'
+  - name: Change ownership and permissions of Tor Browser directory
+    file:
+      path: "/opt/tor-browser"
+      owner: "{{ lookup('env', 'USER') }}"
+      group: "{{ lookup('env', 'USER') }}"
+      mode: '0755'
+      recurse: yes
+  - name: Make the startup script executable
+    file:
+      path: "/opt/tor-browser/start-tor-browser.desktop"
+      mode: '0755'
+  - name: Register Tor Browser as an application
+    shell: "cd /opt/tor-browser && ./start-tor-browser.desktop --register-app"
+    become: false
+    become_user: "{{ lookup('env', 'USER') }}"
     args:
-      creates: /var/lib/flatpak/repo/flathub.flatpakrepo
-  - name: Install applications via flatpak
-    shell: flatpak install -y flathub {{ item }}
-    args:
-      creates: /var/lib/flatpak/app/{{ item }}
-    loop:
-    - com.bitwarden.desktop
-    - com.discordapp.Discord
-    - com.github.unrud.VideoDownloader
-    - com.obsproject.Studio
-    - com.spotify.Client
-    - org.kde.optiimage
-    - org.qbittorrent.qBittorrent
-    - org.telegram.desktop
+      creates: "{{ lookup('env', 'HOME') }}/.local/share/applications/start-tor-browser.desktop"
+  - name: Create symbolic link for Tor Browser
+    file:
+      src: "/opt/tor-browser/Browser/start-tor-browser"
+      dest: "/usr/local/bin/tor"
+      state: link
+
+  - name: Create temporary VeraCrypt directory for download
+    file:
+      path: /tmp/veracrypt
+      state: directory
+      mode: '0755'
+  - name: Download VeraCrypt .deb package
+    get_url:
+      url: "https://launchpad.net/veracrypt/trunk/1.26.14/+download/veracrypt-1.26.14-Ubuntu-22.04-amd64.deb"
+      dest: "/tmp/veracrypt/veracrypt.deb"
+      mode: '0644'
+  - name: Install VeraCrypt dependencies
+    apt:
+      name:
+      - dmsetup
+      - libfuse2
+      state: present
+      update_cache: yes
+  - name: Install VeraCrypt from .deb file
+    apt:
+      deb: "/tmp/veracrypt/veracrypt.deb"
+      state: present
 
   - name: Download Docker installation script
     get_url:
@@ -361,7 +343,7 @@
     debug:
       msg:
       - "Instalação e configuração concluídas com sucesso! =D"
-      - "Execute 'newgrp docker' para aplicar as mudanças de grupo"
+      - "Execute 'newgrp docker' para aplicar as mudanças de grupo!"
 
   - name: Install Docker Compose
     get_url:
@@ -380,3 +362,21 @@
       url: "https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}/bin/linux/amd64/kubectl"
       dest: /usr/local/bin/kubectl
       mode: '0755'
+
+  - name: Add Flathub repository
+    shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    args:
+      creates: /var/lib/flatpak/repo/flathub.flatpakrepo
+  - name: Install applications via flatpak
+    shell: flatpak install -y flathub {{ item }}
+    args:
+      creates: /var/lib/flatpak/app/{{ item }}
+    loop:
+    - com.bitwarden.desktop
+    - com.discordapp.Discord
+    - com.github.unrud.VideoDownloader
+    - com.obsproject.Studio
+    - com.spotify.Client
+    - org.kde.optiimage
+    - org.qbittorrent.qBittorrent
+    - org.telegram.desktop
