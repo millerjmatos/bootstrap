@@ -221,6 +221,7 @@
     - bceskavich.theme-dracula-at-night
     - equinusocio.vsc-material-theme-icons
     - foxundermoon.shell-format
+    - GitHub.copilot
     - hashicorp.terraform
     - kennylong.kubernetes-yaml-formatter
     - ms-azuretools.vscode-docker
