@@ -189,7 +189,7 @@
       creates: /etc/apt/keyrings/google-chrome.gpg
   - name: Add Google Chrome repository
     apt_repository:
-      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main"
+      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main\n"
       state: present
       filename: google-chrome
       update_cache: yes
@@ -204,7 +204,7 @@
       creates: /etc/apt/keyrings/microsoft.gpg
   - name: Add vscode repository
     apt_repository:
-      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main"
+      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main\n"
       state: present
       filename: vscode
       update_cache: yes
@@ -254,7 +254,7 @@
       creates: /etc/apt/keyrings/ulauncher.gpg
   - name: Add Ulauncher repository
     apt_repository:
-      repo: "deb [signed-by=/etc/apt/keyrings/ulauncher.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main"
+      repo: "deb [signed-by=/etc/apt/keyrings/ulauncher.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main\n"
       state: present
       filename: ulauncher
       update_cache: yes
