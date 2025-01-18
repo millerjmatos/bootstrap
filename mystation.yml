@@ -20,6 +20,9 @@
       line: "{{ item }}"
       state: present
     loop:
+    - 'alias ll="ls -l"'
+    - 'alias la="ls -la"'
+    - 'alias update="sudo apt update && sudo apt upgrade && full-upgrade && sudo apt autoremove && sudo apt autoclean"'
     - 'alias inet="ip -br -c a"'
     - 'alias dt="date +%H:%M"'
     - 'alias k=kubectl'
