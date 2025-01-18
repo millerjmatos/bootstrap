@@ -181,6 +181,7 @@
       name:
       - vagrant
       - packer
+      - terraform
       state: present
 
   - name: Download and install Google Chrome GPG key
