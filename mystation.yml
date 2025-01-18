@@ -20,6 +20,11 @@
       line: "{{ item }}"
       state: present
     loop:
+    - 'alias gs="git status"'
+    - 'alias ga="git add"'
+    - 'alias gc="git commit -m"'
+    - 'alias gp="git push"'
+    - 'alias gl="git log --oneline"'
     - 'alias ll="ls -l"'
     - 'alias la="ls -la"'
     - 'alias update="sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean"'
