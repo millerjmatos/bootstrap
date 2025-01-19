@@ -257,6 +257,21 @@
       name: anydesk
       state: present
 
+  - name: Download and install Spotify GPG key
+    shell: curl -fsSL https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/spotify.gpg
+    args:
+      creates: /etc/apt/keyrings/spotify.gpg
+  - name: Add Spotify repository
+    apt_repository:
+      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/spotify.gpg] http://repository.spotify.com stable non-free\n"
+      state: present
+      filename: spotify
+      update_cache: yes
+  - name: Install Spotify
+    apt:
+      name: spotify-client
+      state: present
+
   - name: Download and install Ulauncher GPG key
     shell: curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xFAF1020699503176" | gpg --dearmor -o /etc/apt/keyrings/ulauncher.gpg
     args:
@@ -388,7 +403,6 @@
     - com.discordapp.Discord
     - com.github.unrud.VideoDownloader
     - com.obsproject.Studio
-    - com.spotify.Client
     - org.kde.optiimage
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
