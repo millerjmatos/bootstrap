@@ -184,7 +184,7 @@
       state: present
       filename: hashicorp
       update_cache: yes
-  - name: Install Vagrant and Packer
+  - name: Install Vagrant, Packer and Terraform
     apt:
       name:
       - vagrant
