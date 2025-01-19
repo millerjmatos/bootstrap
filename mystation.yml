@@ -93,6 +93,7 @@
     - htop
     - jq
     - libarchive-tools
+    - libguestfs-tools
     - make
     - mlocate
     - mtr
