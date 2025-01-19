@@ -143,7 +143,7 @@
       creates: /etc/apt/keyrings/virtualbox.gpg
   - name: Add VirtualBox repository
     apt_repository:
-      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/virtualbox.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib"
+      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/virtualbox.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib\n"
       state: present
       filename: virtualbox
       update_cache: yes
