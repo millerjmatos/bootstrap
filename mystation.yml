@@ -110,6 +110,7 @@
     - rsync
     - steam
     - tilix
+    - tree
     - vim
     - vlc
     - wget
