@@ -182,7 +182,7 @@
   - name: Add hashicorp repository
     apt_repository:
       repo: "deb [signed-by=/etc/apt/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com jammy main\n"
-      state: present
+      state: latest
       filename: hashicorp
       update_cache: yes
   - name: Install Vagrant, Packer and Terraform
