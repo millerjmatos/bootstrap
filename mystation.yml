@@ -182,7 +182,7 @@
   - name: Add hashicorp repository
     apt_repository:
       repo: "deb [signed-by=/etc/apt/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com jammy main\n"
-      state: latest
+      state: present
       filename: hashicorp
       update_cache: yes
   - name: Install Vagrant, Packer and Terraform
@@ -191,7 +191,7 @@
       - vagrant
       - packer
       - terraform
-      state: present
+      state: latest
 
   - name: Download and install Google Chrome GPG key
     shell: curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
