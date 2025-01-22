@@ -107,6 +107,7 @@
     - nmap
     - openssh-client
     - openssh-server
+    - preload
     - python3-pip
     - rclone
     - rsync
