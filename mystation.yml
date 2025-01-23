@@ -90,6 +90,7 @@
     - fonts-hack
     - gdebi
     - git
+    - gnome-font-viewer
     - gnupg
     - gnupg-agent
     - htop
