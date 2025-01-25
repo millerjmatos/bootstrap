@@ -73,6 +73,33 @@
             info "Memory"
         }
 
+  - name: Install Orchis theme dependencies
+    apt:
+      name:
+      - gtk2-engines
+      - gnome-themes-extra
+      - sassc
+      state: present
+  - name: Download Orchis theme
+    get_url:
+      url: https://github.com/vinceliuice/Orchis-theme/archive/refs/tags/2024-11-03.tar.gz
+      dest: /tmp/Orchis-theme.tar.gz
+      mode: '0755'
+  - name: Extract Orchis theme
+    unarchive:
+      src: "/tmp/Orchis-theme.tar.gz"
+      dest: "/tmp"
+      remote_src: yes
+  - name: Install Orchis theme
+    shell: "cd /tmp/Orchis-theme-2024-11-03 && ./install.sh -t orange --tweaks macos"
+  - name: Clean up files and directories
+    file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+    - "/tmp/Orchis-theme-2024-11-03"
+    - "/tmp/Orchis-theme.tar.gz"
+
   - name: Install Linux apps
     apt:
       name: '{{ item }}'
