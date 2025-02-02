@@ -125,7 +125,6 @@
     - libarchive-tools
     - libguestfs-tools
     - make
-    - mlocate
     - mtr
     - ncdu
     - net-tools
@@ -135,11 +134,13 @@
     - nmap
     - openssh-client
     - openssh-server
+    - plocate
     - preload
     - python3-pip
     - rclone
     - rsync
     - steam
+    - syncthing
     - tilix
     - tree
     - ubuntu-restricted-extras
