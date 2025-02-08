@@ -147,6 +147,7 @@
     - vim
     - vlc
     - wget
+    - whois
     - xl2tpd
     - xrdp
 
@@ -447,6 +448,8 @@
     - com.discordapp.Discord
     - com.github.unrud.VideoDownloader
     - com.obsproject.Studio
+    - com.rustdesk.RustDesk
     - org.kde.optiimage
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
+    - page.kramo.Sly
