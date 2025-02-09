@@ -289,12 +289,12 @@
     - streetsidesoftware.code-spell-checker-portuguese
 
   - name: Download and install AnyDesk GPG key
-    shell: curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY | gpg --dearmor -o /etc/apt/keyrings/anydesk.gpg
+    shell: curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY -o /etc/apt/keyrings/keys.anydesk.com.asc
     args:
-      creates: /etc/apt/keyrings/anydesk.gpg
+      creates: /etc/apt/keyrings/keys.anydesk.com.asc
   - name: Add AnyDesk repository
     apt_repository:
-      repo: "deb [signed-by=/etc/apt/keyrings/anydesk.gpg] http://deb.anydesk.com/ all main\n"
+      repo: "deb [signed-by=/etc/apt/keyrings/keys.anydesk.com.asc] http://deb.anydesk.com/ all main\n"
       state: present
       filename: anydesk
       update_cache: yes
