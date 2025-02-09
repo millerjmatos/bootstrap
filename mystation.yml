@@ -149,6 +149,7 @@
     - vlc
     - wget
     - whois
+    - wireshark
     - xl2tpd
     - xrdp
 
