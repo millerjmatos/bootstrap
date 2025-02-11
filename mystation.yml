@@ -137,6 +137,7 @@
     - plocate
     - preload
     - python3-pip
+    - python3-venv
     - rclone
     - rsync
     - software-properties-common
