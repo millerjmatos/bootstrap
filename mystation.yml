@@ -452,6 +452,7 @@
     - com.github.unrud.VideoDownloader
     - com.obsproject.Studio
     - com.rustdesk.RustDesk
+    - io.github.plrigaux.sysd-manager
     - org.kde.optiimage
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
