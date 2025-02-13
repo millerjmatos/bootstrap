@@ -111,6 +111,7 @@
     - ca-certificates
     - color-picker
     - curl
+    - duf
     - filezilla
     - flameshot
     - flatpak
