@@ -163,18 +163,24 @@
   - name: Install balenaEtcher
     get_url:
       url: "https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25-x64.AppImage"
-      dest: /usr/local/bin/balena
+      dest: "/usr/local/bin/balena"
+      mode: '0755'
+
+  - name: Install Standard Notes
+    get_url:
+      url: "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.195.25/standard-notes-3.195.25-linux-x86_64.AppImage"
+      dest: "/usr/local/bin/notes"
       mode: '0755'
 
   - name: Install Winbox 4.0beta16
     unarchive:
-      src: 'https://download.mikrotik.com/routeros/winbox/4.0beta16/WinBox_Linux.zip'
-      dest: /usr/local/bin
+      src: "https://download.mikrotik.com/routeros/winbox/4.0beta16/WinBox_Linux.zip"
+      dest: "/usr/local/bin"
       remote_src: yes
   - name: Create symbolic link for Winbox 4.0beta16
     file:
-      src: /usr/local/bin/WinBox
-      dest: /usr/local/bin/winbox
+      src: "/usr/local/bin/WinBox"
+      dest: "/usr/local/bin/winbox"
       state: link
 
   - name: Download and install VirtualBox GPG key
