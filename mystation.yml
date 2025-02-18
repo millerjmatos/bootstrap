@@ -180,7 +180,7 @@
   - name: Download and install VirtualBox GPG key
     shell: "curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor -o /etc/apt/keyrings/virtualbox.gpg"
     args:
-      creates: /etc/apt/keyrings/virtualbox.gpg
+      creates: "/etc/apt/keyrings/virtualbox.gpg"
   - name: Add VirtualBox repository
     apt_repository:
       repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/virtualbox.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib\n"
@@ -226,7 +226,7 @@
   - name: Download and install HashiCorp GPG key
     shell: "curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /etc/apt/keyrings/hashicorp.gpg"
     args:
-      creates: /etc/apt/keyrings/hashicorp.gpg
+      creates: "/etc/apt/keyrings/hashicorp.gpg"
   - name: Add hashicorp repository
     apt_repository:
       repo: "deb [signed-by=/etc/apt/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com jammy main\n"
@@ -244,7 +244,7 @@
   - name: Download and install Google Chrome GPG key
     shell: "curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg"
     args:
-      creates: /etc/apt/keyrings/google-chrome.gpg
+      creates: "/etc/apt/keyrings/google-chrome.gpg"
   - name: Add Google Chrome repository
     apt_repository:
       repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main\n"
@@ -259,7 +259,7 @@
   - name: Download and install vscode GPG key
     shell: "curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/keyrings/microsoft.gpg"
     args:
-      creates: /etc/apt/keyrings/microsoft.gpg
+      creates: "/etc/apt/keyrings/microsoft.gpg"
   - name: Add vscode repository
     apt_repository:
       repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main\n"
@@ -294,7 +294,7 @@
   - name: Download and install AnyDesk GPG key
     shell: "curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY -o /etc/apt/keyrings/keys.anydesk.com.asc"
     args:
-      creates: /etc/apt/keyrings/keys.anydesk.com.asc
+      creates: "/etc/apt/keyrings/keys.anydesk.com.asc"
   - name: Add AnyDesk repository
     apt_repository:
       repo: "deb [signed-by=/etc/apt/keyrings/keys.anydesk.com.asc] http://deb.anydesk.com/ all main\n"
@@ -309,7 +309,7 @@
   - name: Download and install Spotify GPG key
     shell: "curl -fsSL https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | gpg --dearmor -o /etc/apt/keyrings/spotify.gpg"
     args:
-      creates: /etc/apt/keyrings/spotify.gpg
+      creates: "/etc/apt/keyrings/spotify.gpg"
   - name: Add Spotify repository
     apt_repository:
       repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/spotify.gpg] http://repository.spotify.com stable non-free\n"
@@ -324,7 +324,7 @@
   - name: Download and install Ulauncher GPG key
     shell: curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xFAF1020699503176" | gpg --dearmor -o /etc/apt/keyrings/ulauncher.gpg
     args:
-      creates: /etc/apt/keyrings/ulauncher.gpg
+      creates: "/etc/apt/keyrings/ulauncher.gpg"
   - name: Add Ulauncher repository
     apt_repository:
       repo: "deb [signed-by=/etc/apt/keyrings/ulauncher.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main\n"
@@ -339,7 +339,7 @@
   - name: Download and install Jellyfin GPG key
     shell: "curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg"
     args:
-    creates: /etc/apt/keyrings/jellyfin.gpg
+    creates: "/etc/apt/keyrings/jellyfin.gpg"
   - name: Add Jellyfin repository
     apt_repository:
       repo: "deb [signed-by=/etc/apt/keyrings/jellyfin.gpg] https://repo.jellyfin.org/ubuntu jammy main\n"
@@ -423,12 +423,12 @@
   - name: Download Ollama installation script
     get_url:
       url: "https://ollama.com/install.sh"
-      dest: /tmp/install-ollama.sh
+      dest: "/tmp/install-ollama.sh"
       mode: '0755'
   - name: Install Ollama
     shell: bash /tmp/install-ollama.sh
     args:
-      creates: /usr/local/bin/ollama
+      creates: "/usr/local/bin/ollama"
   - name: Clean up Ollama installation script
     file:
       path: "/tmp/install-ollama.sh"
@@ -436,6 +436,25 @@
   - name: Enable and start Ollama service
     systemd:
       name: ollama
+      state: started
+      enabled: yes
+
+  - name: Download ZeroTier installation script
+    get_url:
+      url: "https://install.zerotier.com"
+      dest: "/tmp/install-zerotier.sh"
+      mode: '0755'
+  - name: Install ZeroTier
+    shell: bash /tmp/install-zerotier.sh
+    args:
+      creates: "/usr/sbin/zerotier-one"
+  - name: Clean up ZeroTier installation script
+    file:
+      path: "/tmp/install-zerotier.sh"
+      state: absent
+  - name: Enable and start Ollama service
+    systemd:
+      name: zerotier-one
       state: started
       enabled: yes
 
@@ -447,7 +466,7 @@
   - name: Install Docker
     shell: sh /tmp/get-docker.sh
     args:
-      creates: /usr/bin/docker
+      creates: "/usr/bin/docker"
   - name: Start and enable Docker services
     systemd:
       name: "{{ item }}"
@@ -488,7 +507,7 @@
   - name: Add Flathub repository
     shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     args:
-      creates: /var/lib/flatpak/repo/flathub.flatpakrepo
+      creates: "/var/lib/flatpak/repo/flathub.flatpakrepo"
   - name: Install applications via flatpak
     shell: flatpak install -y flathub {{ item }}
     args:
