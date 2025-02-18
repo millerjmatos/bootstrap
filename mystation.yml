@@ -82,7 +82,7 @@
       state: present
   - name: Download Orchis theme
     get_url:
-      url: https://github.com/vinceliuice/Orchis-theme/archive/refs/tags/2024-11-03.tar.gz
+      url: "https://github.com/vinceliuice/Orchis-theme/archive/refs/tags/2024-11-03.tar.gz"
       dest: /tmp/Orchis-theme.tar.gz
       mode: '0755'
   - name: Extract Orchis theme
@@ -162,7 +162,7 @@
 
   - name: Install balenaEtcher
     get_url:
-      url: 'https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25-x64.AppImage'
+      url: "https://github.com/balena-io/etcher/releases/download/v1.19.25/balenaEtcher-1.19.25-x64.AppImage"
       dest: /usr/local/bin/balena
       mode: '0755'
 
@@ -178,7 +178,7 @@
       state: link
 
   - name: Download and install VirtualBox GPG key
-    shell: curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor -o /etc/apt/keyrings/virtualbox.gpg
+    shell: "curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor -o /etc/apt/keyrings/virtualbox.gpg"
     args:
       creates: /etc/apt/keyrings/virtualbox.gpg
   - name: Add VirtualBox repository
@@ -224,7 +224,7 @@
       state: absent
 
   - name: Download and install HashiCorp GPG key
-    shell: curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /etc/apt/keyrings/hashicorp.gpg
+    shell: "curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /etc/apt/keyrings/hashicorp.gpg"
     args:
       creates: /etc/apt/keyrings/hashicorp.gpg
   - name: Add hashicorp repository
@@ -242,7 +242,7 @@
       state: latest
 
   - name: Download and install Google Chrome GPG key
-    shell: curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
+    shell: "curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg"
     args:
       creates: /etc/apt/keyrings/google-chrome.gpg
   - name: Add Google Chrome repository
@@ -257,7 +257,7 @@
       state: present
 
   - name: Download and install vscode GPG key
-    shell: curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/keyrings/microsoft.gpg
+    shell: "curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/keyrings/microsoft.gpg"
     args:
       creates: /etc/apt/keyrings/microsoft.gpg
   - name: Add vscode repository
@@ -292,7 +292,7 @@
     - streetsidesoftware.code-spell-checker-portuguese
 
   - name: Download and install AnyDesk GPG key
-    shell: curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY -o /etc/apt/keyrings/keys.anydesk.com.asc
+    shell: "curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY -o /etc/apt/keyrings/keys.anydesk.com.asc"
     args:
       creates: /etc/apt/keyrings/keys.anydesk.com.asc
   - name: Add AnyDesk repository
@@ -307,7 +307,7 @@
       state: present
 
   - name: Download and install Spotify GPG key
-    shell: curl -fsSL https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/spotify.gpg
+    shell: "curl -fsSL https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | gpg --dearmor -o /etc/apt/keyrings/spotify.gpg"
     args:
       creates: /etc/apt/keyrings/spotify.gpg
   - name: Add Spotify repository
@@ -365,7 +365,7 @@
 
   - name: Download Tor Browser
     get_url:
-      url: https://dist.torproject.org/torbrowser/14.0.4/tor-browser-linux-x86_64-14.0.4.tar.xz
+      url: "https://dist.torproject.org/torbrowser/14.0.4/tor-browser-linux-x86_64-14.0.4.tar.xz"
       dest: "/opt/tor-browser.tar.xz"
       mode: '0644'
       validate_certs: no
@@ -422,7 +422,7 @@
 
   - name: Download Ollama installation script
     get_url:
-      url: https://ollama.com/install.sh
+      url: "https://ollama.com/install.sh"
       dest: /tmp/install-ollama.sh
       mode: '0755'
   - name: Install Ollama
@@ -441,7 +441,7 @@
 
   - name: Download Docker installation script
     get_url:
-      url: https://get.docker.com
+      url: "https://get.docker.com"
       dest: /tmp/get-docker.sh
       mode: '0755'
   - name: Install Docker
@@ -475,7 +475,7 @@
 
   - name: Install Kind
     get_url:
-      url: https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+      url: "https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64"
       dest: /usr/local/bin/kind
       mode: '0755'
 
