@@ -336,6 +336,33 @@
       name: ulauncher
       state: present
 
+  - name: Download and install Jellyfin GPG key
+    shell: "curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg"
+    args:
+    creates: /etc/apt/keyrings/jellyfin.gpg
+  - name: Add Jellyfin repository
+    apt_repository:
+      repo: "deb [signed-by=/etc/apt/keyrings/jellyfin.gpg] https://repo.jellyfin.org/ubuntu jammy main\n"
+      state: present
+      filename: jellyfin
+      update_cache: yes
+  - name: Install Jellyfin
+    apt:
+      name: jellyfin
+      state: present
+  - name: Enable and start Jellyfin service
+    systemd:
+      name: jellyfin
+      state: started
+      enabled: yes
+  - name: Allow Jellyfin through UFW
+    ufw:
+      rule: allow
+      port: 8096
+      proto: tcp
+  - name: Reload UFW
+    command: ufw reload
+
   - name: Download Tor Browser
     get_url:
       url: https://dist.torproject.org/torbrowser/14.0.4/tor-browser-linux-x86_64-14.0.4.tar.xz
