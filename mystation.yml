@@ -524,6 +524,7 @@
     - com.obsproject.Studio
     - com.rustdesk.RustDesk
     - io.github.plrigaux.sysd-manager
+    - io.github.andreibachim.shortcut
     - org.kde.optiimage
     - org.qbittorrent.qBittorrent
     - org.telegram.desktop
