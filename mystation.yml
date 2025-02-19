@@ -404,20 +404,6 @@
       dest: "/usr/local/bin/tor"
       state: link
 
-  - name: Download Portmaster .deb package
-    get_url:
-      url: "https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb"
-      dest: "/tmp/portmaster-installer.deb"
-      mode: '0755'
-  - name: Install Portmaster from .deb file
-    apt:
-      deb: "/tmp/portmaster-installer.deb"
-      state: present
-  - name: Clean up Portmaster .deb file
-    file:
-      path: "/tmp/portmaster-installer.deb"
-      state: absent
-
   - name: Download VeraCrypt .deb package
     get_url:
       url: "https://launchpad.net/veracrypt/trunk/1.26.20/+download/veracrypt-1.26.20-Ubuntu-22.04-amd64.deb"
