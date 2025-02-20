@@ -36,43 +36,6 @@
     - 'source <(kubectl completion bash)'
     - 'complete -o default -F __start_kubectl k'
 
-  - name: Configure vim settings
-    blockinfile:
-      path: /etc/vim/vimrc
-      block: |
-        set expandtab
-        set tabstop=2
-        set shiftwidth=2
-      marker: ""
-
-  - name: Configure neofetch to run at terminal startup
-    lineinfile:
-      path: ~/.bashrc
-      line: 'neofetch'
-      state: present
-
-  - name: Customize neofetch settings
-    blockinfile:
-      path: ~/.config/neofetch/config.conf
-      create: yes
-      block: |
-        print_info() {
-            info title
-            info underline
-            info "OS"
-            info "Host"
-            info "Kernel"
-            info "Uptime"
-            info "Packages"
-            info "Shell"
-            info "Resolution"
-            info "DE"
-            info "WM"
-            info "Terminal"
-            info "CPU"
-            info "Memory"
-        }
-
   - name: Install Orchis theme dependencies
     apt:
       name:
@@ -154,6 +117,43 @@
     - wireshark
     - xl2tpd
     - xrdp
+
+  - name: Configure vim settings
+    blockinfile:
+      path: /etc/vim/vimrc
+      block: |
+        set expandtab
+        set tabstop=2
+        set shiftwidth=2
+      marker: ""
+
+  - name: Configure neofetch to run at terminal startup
+    lineinfile:
+      path: ~/.bashrc
+      line: 'neofetch'
+      state: present
+
+  - name: Customize neofetch settings
+    blockinfile:
+      path: ~/.config/neofetch/config.conf
+      create: yes
+      block: |
+        print_info() {
+            info title
+            info underline
+            info "OS"
+            info "Host"
+            info "Kernel"
+            info "Uptime"
+            info "Packages"
+            info "Shell"
+            info "Resolution"
+            info "DE"
+            info "WM"
+            info "Terminal"
+            info "CPU"
+            info "Memory"
+        }
 
   - name: Install AWS CLI via pip3
     pip:
