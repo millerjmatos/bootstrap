@@ -245,6 +245,7 @@
       - vagrant
       - packer
       - terraform
+      - vault
       state: latest
 
   - name: Download and install Google Chrome GPG key
