@@ -346,7 +346,7 @@
   - name: Download and install Jellyfin GPG key
     shell: "curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg"
     args:
-    creates: "/etc/apt/keyrings/jellyfin.gpg"
+      creates: "/etc/apt/keyrings/jellyfin.gpg"
   - name: Add Jellyfin repository
     apt_repository:
       repo: "deb [signed-by=/etc/apt/keyrings/jellyfin.gpg] https://repo.jellyfin.org/ubuntu jammy main\n"
