@@ -458,7 +458,7 @@
     file:
       path: "/tmp/install-zerotier.sh"
       state: absent
-  - name: Enable and start Ollama service
+  - name: Enable and start ZeroTier service
     systemd:
       name: zerotier-one
       state: started
