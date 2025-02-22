@@ -372,7 +372,7 @@
 
   - name: Download Tor Browser
     get_url:
-      url: "https://dist.torproject.org/torbrowser/14.0.4/tor-browser-linux-x86_64-14.0.4.tar.xz"
+      url: "https://www.torproject.org/dist/torbrowser/14.0.6/tor-browser-linux-x86_64-14.0.6.tar.xz"
       dest: "/opt/tor-browser.tar.xz"
       mode: '0644'
       validate_certs: no
