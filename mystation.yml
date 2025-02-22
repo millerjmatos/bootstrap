@@ -112,6 +112,7 @@
     - ubuntu-restricted-extras
     - vim
     - vlc
+    - webapp-manager
     - wget
     - whois
     - wireshark
