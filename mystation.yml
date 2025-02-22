@@ -84,6 +84,7 @@
     - gnome-font-viewer
     - gnupg
     - gnupg-agent
+    - gparted
     - htop
     - jq
     - libarchive-tools
