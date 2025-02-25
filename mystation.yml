@@ -331,7 +331,7 @@
       state: present
 
   - name: Download and install Ulauncher GPG key
-    shell: curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xFAF1020699503176" | gpg --dearmor -o /etc/apt/keyrings/ulauncher.gpg
+    shell: "curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0F4EF9A82F2672D51D30719F FAF1020699503176' | gpg --dearmor -o /etc/apt/keyrings/ulauncher.gpg"
     args:
       creates: "/etc/apt/keyrings/ulauncher.gpg"
   - name: Add Ulauncher repository
