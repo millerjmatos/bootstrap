@@ -351,7 +351,7 @@
       creates: "/etc/apt/keyrings/jellyfin.gpg"
   - name: Add Jellyfin repository
     apt_repository:
-      repo: "deb [signed-by=/etc/apt/keyrings/jellyfin.gpg] https://repo.jellyfin.org/ubuntu jammy main\n"
+      repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/jellyfin.gpg] https://repo.jellyfin.org/ubuntu jammy main\n"
       state: present
       filename: jellyfin
       update_cache: yes
