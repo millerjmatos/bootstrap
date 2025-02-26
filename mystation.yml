@@ -185,6 +185,41 @@
       dest: "/usr/local/bin/winbox"
       state: link
 
+  - name: Download Ulauncher .deb package
+    get_url:
+      url: "https://github.com/Ulauncher/Ulauncher/releases/download/5.15.7/ulauncher_5.15.7_all.deb"
+      dest: "/tmp/ulauncher.deb"
+      mode: '0755'
+  - name: Install Ulauncher from .deb file
+    apt:
+      deb: "/tmp/ulauncher.deb"
+      state: present
+  - name: Clean up Ulauncher .deb file
+    file:
+      path: "/tmp/Ulauncher.deb"
+      state: absent
+
+  - name: Download VeraCrypt .deb package
+    get_url:
+      url: "https://launchpad.net/veracrypt/trunk/1.26.20/+download/veracrypt-1.26.20-Ubuntu-22.04-amd64.deb"
+      dest: "/tmp/veracrypt.deb"
+      mode: '0755'
+  - name: Install VeraCrypt dependencies
+    apt:
+      name:
+      - dmsetup
+      - libfuse2
+      state: present
+      update_cache: yes
+  - name: Install VeraCrypt from .deb file
+    apt:
+      deb: "/tmp/veracrypt.deb"
+      state: present
+  - name: Clean up VeraCrypt .deb file
+    file:
+      path: "/tmp/veracrypt.deb"
+      state: absent
+
   - name: Download and install VirtualBox GPG key
     shell: "curl -fsSL https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor -o /etc/apt/keyrings/virtualbox.gpg"
     args:
@@ -330,21 +365,6 @@
       name: spotify-client
       state: present
 
-  - name: Download and install Ulauncher GPG key
-    shell: "curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0F4EF9A82F2672D51D30719F FAF1020699503176' | gpg --dearmor -o /etc/apt/keyrings/ulauncher.gpg"
-    args:
-      creates: "/etc/apt/keyrings/ulauncher.gpg"
-  - name: Add Ulauncher repository
-    apt_repository:
-      repo: "deb [signed-by=/etc/apt/keyrings/ulauncher.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main\n"
-      state: present
-      filename: ulauncher
-      update_cache: yes
-  - name: Install Ulauncher
-    apt:
-      name: ulauncher
-      state: present
-
   - name: Download and install Jellyfin GPG key
     shell: "curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg"
     args:
@@ -406,27 +426,6 @@
       src: "/opt/tor-browser/Browser/start-tor-browser"
       dest: "/usr/local/bin/tor"
       state: link
-
-  - name: Download VeraCrypt .deb package
-    get_url:
-      url: "https://launchpad.net/veracrypt/trunk/1.26.20/+download/veracrypt-1.26.20-Ubuntu-22.04-amd64.deb"
-      dest: "/tmp/veracrypt.deb"
-      mode: '0755'
-  - name: Install VeraCrypt dependencies
-    apt:
-      name:
-      - dmsetup
-      - libfuse2
-      state: present
-      update_cache: yes
-  - name: Install VeraCrypt from .deb file
-    apt:
-      deb: "/tmp/veracrypt.deb"
-      state: present
-  - name: Clean up VeraCrypt .deb file
-    file:
-      path: "/tmp/veracrypt.deb"
-      state: absent
 
   - name: Download Ollama installation script
     get_url:
