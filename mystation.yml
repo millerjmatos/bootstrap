@@ -196,7 +196,7 @@
       state: present
   - name: Clean up Ulauncher .deb file
     file:
-      path: "/tmp/Ulauncher.deb"
+      path: "/tmp/ulauncher.deb"
       state: absent
 
   - name: Download VeraCrypt .deb package
