@@ -185,6 +185,55 @@
       dest: "/usr/local/bin/winbox"
       state: link
 
+- name: Install Anki dependencies
+  apt:
+    name:
+    - libxcb-xinerama0
+    - libxcb-cursor0
+    - libnss3
+    - zstd
+    state: present
+    update_cache: yes
+- name: Download Anki package
+  get_url:
+    url: "https://github.com/ankitects/anki/releases/download/25.02/anki-25.02-linux-qt6.tar.zst"
+    dest: "/tmp/anki-25.02-linux-qt6.tar.zst"
+    mode: '0644'
+- name: Extract Anki package
+  unarchive:
+    src: "/tmp/anki-25.02-linux-qt6.tar.zst"
+    dest: "/tmp"
+    remote_src: yes
+    extra_opts:
+    - "--use-compress-program=unzstd"
+- name: Install Anki
+  shell: cd /tmp/anki-25.02-linux-qt6 && ./install.sh
+- name: Clean up temporary files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - "/tmp/anki-25.02-linux-qt6.tar.zst"
+  - "/tmp/anki-25.02-linux-qt6"
+  - name: Create desktop entry for Anki
+    copy:
+      dest: "{{ lookup('env', 'HOME') }}/.local/share/applications/anki.desktop"
+      content: |
+        [Desktop Entry]
+        Name=Anki
+        Comment=Flashcard program
+        Exec=anki
+        Icon=/usr/share/icons/Mint-Y/apps/256/anki.png
+        Terminal=false
+        Type=Application
+        Categories=Education;Languages;
+        Keywords=flashcard;learning;
+      mode: '0755'
+  - name: Update application database
+    shell: update-desktop-database ~/.local/share/applications
+    args:
+      executable: /bin/bash
+
   - name: Download Ulauncher .deb package
     get_url:
       url: "https://github.com/Ulauncher/Ulauncher/releases/download/5.15.7/ulauncher_5.15.7_all.deb"
