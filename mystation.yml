@@ -90,6 +90,7 @@
     - libarchive-tools
     - libguestfs-tools
     - make
+    - memtester
     - mtr
     - ncdu
     - net-tools
