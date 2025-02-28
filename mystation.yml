@@ -371,7 +371,6 @@
     - bbenoist.vagrant
     - dracula-theme.theme-dracula
     - bceskavich.theme-dracula-at-night
-    - equinusocio.vsc-material-theme-icons
     - foxundermoon.shell-format
     - GitHub.copilot
     - hashicorp.terraform
