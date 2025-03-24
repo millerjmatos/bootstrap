@@ -85,6 +85,7 @@
     - gnupg
     - gnupg-agent
     - gparted
+    - gsmartcontrol
     - htop
     - jq
     - libarchive-tools
@@ -106,6 +107,7 @@
     - python3-venv
     - rclone
     - rsync
+    - screen
     - software-properties-common
     - steam
     - syncthing
