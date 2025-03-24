@@ -576,6 +576,7 @@
     - com.github.unrud.VideoDownloader
     - com.obsproject.Studio
     - com.rustdesk.RustDesk
+    - com.warlordsoftwares.jpeg2pdf
     - io.github.plrigaux.sysd-manager
     - org.kde.optiimage
     - org.qbittorrent.qBittorrent
