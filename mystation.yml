@@ -72,8 +72,10 @@
     - apt-transport-https
     - bash-completion
     - ca-certificates
+    - cifs-utils
     - color-picker
     - curl
+    - dos2unix
     - duf
     - filezilla
     - flameshot
@@ -94,17 +96,21 @@
     - memtester
     - mtr
     - ncdu
+    - neofetch
     - net-tools
     - network-manager-l2tp
     - network-manager-l2tp-gnome
-    - neofetch
+    - nfs-common
+    - nfs-kernel-server
     - nmap
     - openssh-client
     - openssh-server
+    - pdfarranger
     - plocate
     - preload
     - python3-pip
     - python3-venv
+    - pwgen
     - rclone
     - rsync
     - screen
